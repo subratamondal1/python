@@ -1,4 +1,4 @@
-"""0 -> Language Fundamentals"""
+"""01 -> Language Fundamentals"""
 
 """
 Note: In, python everything is an object, and each object is an instantiation of a class

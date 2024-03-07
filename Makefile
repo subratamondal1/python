@@ -1,3 +1,7 @@
-run0:
+run01:
 	# run python module - 0 Language Fundamentals
-	python3 "0 Language Fundamentals/main.py"
+	python3 "01 Language Fundamentals/main.py"
+
+run02:
+	# run python module - 0 Language Fundamentals
+	python3 "02 Operators/main.py"
