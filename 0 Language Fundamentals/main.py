@@ -119,7 +119,7 @@ print(type(store), "Memory Adress", id(store))
 - Immutable
 """
 
-print("\nTuples are immutable, hence can't update, on same Memory Address")
+print("\nTuples are immutable, hence on update, Memory Address changes")
 store = (2,3,4,5, "abc", 1.0)
 print(store) # (2, 3, 4, 5, 'abc', 1.0)
 print(type(store), "Memory Adress", id(store))
@@ -165,8 +165,33 @@ store[3] = "valley"
 print(store) # {1: 'subrata', 2: 'apple', 3: 'valley'}
 print(type(store), "Memory Adress", id(store))
 
+# Mutability & Immutability
+print("\nOrdered Immutable String's Memory Address Remains Same on Modification")
+immutable_string = "Subrata"
+print(immutable_string, id(immutable_string))
+immutable_string = "Mondal"
+print(immutable_string, id(immutable_string))
 
+print("\nOrdered Mutable List's Memory Address Changes on Modification")
+mutable_list = [12, 13, 14, "subrata"]
+print(mutable_list, id(mutable_list))
+mutable_list.append("mondal")
+print(mutable_list, id(mutable_list))
 
+print("\nOrdered Immutable Tuple's Memory Address Changes on Modification")
+immutable_tuple = (12, 13, 14, "subrata")
+print(immutable_tuple, id(immutable_tuple))
+immutable_tuple=(12, 13, 14, "subrata", "mondal")
+print(immutable_tuple, id(immutable_tuple))
 
+print("\nUnordered Mutable Set's Memory Address Remains same on Modification")
+mutable_set = {12, 13, 14, "subrata"}
+print(mutable_set, id(mutable_set))
+mutable_set.add("mondal")
+print(mutable_set, id(mutable_set))
 
-
+print("\nUnordered Mutable Dict's Memory Address Remains same on Modification")
+mutable_dict = {"id": 1232, "name": "subrata"}
+print(mutable_dict, id(mutable_dict))
+mutable_dict.update({"title":"mondal"})
+print(mutable_dict, id(mutable_dict))
