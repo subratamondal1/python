@@ -327,3 +327,104 @@ for i in g:
 # Creating a lambda function
 add = lambda x, y, z: x + y * z
 print(add(2, 3, 4))
+
+
+### 12. Decorators
+# - Decorators modify functions using other functions.
+# - Decorators are a way to add functionality to existing functions in Python.
+# - They are a concise and powerful way to modify the behavior of functions in Python.
+# - Syntax: @decorator
+
+
+# Creating a decorator
+def my_decorator(func):
+    def wrapper(name):
+        print("Wrapper: Before function call")
+        func(name)
+        print("Wrapper: After function call")
+
+    return wrapper
+
+
+def hello(name: str):
+    print(f"Welcome: {name}")
+
+
+use_decorator = my_decorator(hello)
+use_decorator("Subrata Mondal")
+
+
+@my_decorator
+def hello(name: str):
+    print(f"Welcome: {name}")
+
+
+hello("Subrata Mondal")
+import time
+
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(
+            f"Function {func.__name__} took {end_time - start_time} seconds to execute"
+        )
+        return result
+
+    return wrapper
+
+
+@timer
+def my_function():
+    time.sleep(2)
+
+
+my_function()
+
+### 13. Regex
+# - Used for searching, matching and  manipulating strings.
+# - Regular expressions (regex) are a way to match patterns in text.
+# - They are a concise and powerful way to search and manipulate text in Python.
+# - Syntax: re.match(pattern, string)
+import re
+
+matched = re.match(pattern=r"apple", string="I like apple")
+print(matched)
+# - Syntax: re.search(pattern, string)
+searched = re.search(pattern=r"apple", string="I like apples")
+print(searched)
+# - Syntax: re.findall(pattern, string)
+find = re.findall(
+    pattern=r"apple", string="I like apples, red apples are the sweetest."
+)
+print(find)
+
+find_int = re.findall(
+    pattern=r"\d", string="I like 2 apples at rs 50, red apples are the sweetest."
+)
+print(find_int)
+
+
+def has_uppercase(string):
+    return bool(re.search(pattern=r"[A-Z]", string=string))
+
+
+print(has_uppercase(string="Subrata"))
+
+# - Syntax: re.sub(pattern, replacement, string)
+subbed = re.sub(pattern=r"apple", repl="banana", string="I like apple")
+print(subbed)
+# - Syntax: re.split(pattern, string)
+split = re.split(pattern=r"apple", string="I like apple")
+print(split)
+# - Syntax: re.compile(pattern)
+compiled = re.compile(pattern=r"apple")
+print(compiled)
+# - Syntax: re.escape(string)
+escaped = re.escape(pattern="I like apple")
+print(escaped)
+# - Syntax: re.IGNORECASE
+ignore = re.IGNORECASE
+print(ignore)
