@@ -7,6 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+jupyter = "^1.1.1"
+ipython = "^8.29.0"
+ipykernel = "^6.29.5"
 
 
 [tool.poetry.group.dev.dependencies]
