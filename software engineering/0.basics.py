@@ -428,3 +428,296 @@ print(escaped)
 # - Syntax: re.IGNORECASE
 ignore = re.IGNORECASE
 print(ignore)
+
+
+### 14. OOPs Concepts
+# - Object-Oriented Programming (OOP) is a programming paradigm that uses objects and classes to model real-world entities.
+# - It provides a way to group related data and behavior into a single unit called a class.
+# - It is a way to create reusable and maintainable code.
+# - `self` is a reference to the current instance of a class.
+
+
+class Hero:
+    def __init__(self, name, level):
+        self.name = name
+        self.level = level
+
+    def describe(self):
+        return f"{self.name} is at level {self.level}"
+
+
+# Creating an instance of the Hero class
+hero = Hero(name="Subrata", level=10)
+print(hero.name)
+print(hero.level)
+print(hero.describe())
+
+
+# - Class Variables
+class Hero:
+    weight = 100
+
+    def __init__(self, name, level):
+        self.name = name
+        self.level = level
+
+    def describe(self):
+        return f"{self.name} is at level {self.level}"
+
+
+hero1 = Hero(name="Subrata", level=10)
+print(hero1.name)
+print(hero1.level)
+print(hero1.describe())
+print("Hero.__dict__", Hero.__dict__)
+print("hero1.__dict__", hero1.__dict__)
+
+### 15. Inheritance
+# - Inheritance is a way to create a new class based on an existing class.
+# - It allows you to reuse the code and functionality of an existing class.
+# - Syntax: class ChildClass(ParentClass):
+
+
+class Archer(Hero):
+    def __init__(self, name, level):
+        super().__init__(name, level)
+        self.arrows = 10
+
+    def describe(self):
+        return super().describe() + " Archer with arrows: " + str(self.arrows)
+
+
+archer = Archer(name="Robin", level=30)
+print(archer.name)
+print(archer.level)
+print(archer.describe())
+
+
+class Wizard(Hero):
+    def describe(self):
+        return super().describe() + " Wizard"
+
+
+wizard = Wizard(name="Merlin", level=30)
+print(wizard.name)
+print(wizard.level)
+print(wizard.describe())
+
+### 16. Private Attributes, Getters and Setters
+# - Private attributes are attributes that are not accessible outside of the class.
+# - Getters and Setters are methods that are used to access and modify private attributes.
+# - Syntax: _attribute
+
+
+class Hero:
+    def __init__(self, name, level):
+        self._name = name
+        self._level = level
+
+    @property
+    def level(self):
+        print("Getter used")
+        return self._level
+
+    @level.setter
+    def level(self, new_level):
+        print("Setter used")
+        if new_level > self._level:
+            self._level = new_level
+        else:
+            print(f"Invalid level: {new_level} must be > {self._level}")
+
+    def describe(self):
+        return f"{self._name} is at level {self._level}"
+
+
+hero = Hero(name="Subrata", level=10)
+print(hero.level)
+hero.level = 30
+print(hero.level)
+print(hero.describe())
+
+
+### 17. Dunder Methods / Magic Methods
+# - Dunder methods are methods that are called automatically by Python when an operation is performed on an object.
+# - Syntax: __dunder_method__
+
+
+# Example of Dunder Methods
+class Vector:
+    def __init__(self, x, y):
+        """
+        Initializes Vector with x and y coordinates.
+
+        Parameters
+        ----------
+        x : int or float
+            The x-coordinate of the vector.
+        y : int or float
+            The y-coordinate of the vector.
+        """
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other):
+        return Vector(self.x - other.x, self.y - other.y)
+
+    def __mul__(self, other):
+        return Vector(self.x * other, self.y * other)
+
+    def __truediv__(self, other):
+        return Vector(self.x / other, self.y / other)
+
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+
+
+v1 = Vector(1, 2)
+v2 = Vector(3, 4)
+print(v1 + v2)
+print(v1 - v2)
+print(v1 * 3)
+print(v1 / 2)
+
+### 18. Abstract Class and Methods
+# - Abstract classes are classes that cannot be instantiated.
+# - They are used to define a common interface for a set of related classes.
+# - Abstract methods are methods that have no implementation in the abstract class.
+# - They are used to enforce a common interface for a set of related classes.
+# - Syntax: from abc import ABC, abstractmethod
+
+from abc import ABC, abstractmethod
+
+
+class Animal(ABC):
+    @abstractmethod
+    def sound(self):
+        pass
+
+
+class Dog(Animal):
+    def sound(self):
+        return "Woof!"
+
+
+class Cat(Animal):
+    def sound(self):
+        return "Meow!"
+
+
+dog = Dog()
+cat = Cat()
+
+print(dog.sound())
+print(cat.sound())
+
+
+### 19. Type Hinting
+# - Type hinting is a way to specify the type of a variable or function parameter.
+# - It helps to catch errors and improve the readability of the code.
+# - Syntax: variable_name: type
+
+x: int = 5
+y: str = "hello"
+
+
+def greeting(name: str) -> None:
+    print(f"Hello, {name}!")
+
+
+greeting(name="John")
+
+
+def add(a: int, b: int) -> int:
+    return a + b
+
+
+result: int = add(a=3, b=5)
+print(result)
+
+### 20. Custom Types with TypeVar
+# - TypeVar is a generic type that can be used to create custom types.
+# - It is used to define a type that can be used in multiple places in the code.
+# - Syntax: from typing import TypeVar
+
+from typing import TypeVar
+
+T = TypeVar("T", bound="Animal")
+
+
+class Animal:
+    def sound(self) -> str:
+        return ""
+
+
+class Dog(Animal):
+    def sound(self) -> str:
+        return "Woof!"
+
+
+def make_sound(animal: T) -> None:
+    print(animal.sound())
+
+
+make_sound(animal=Dog())
+
+
+### 21. Modules and Packages
+# - A module is a file containing Python code.
+# - A package is a directory containing one or more modules.
+# - Syntax: import module
+
+### 22. Testing with Pytest
+# - Pytest is a testing framework for Python.
+# - It is used to write and run tests for Python code.
+# - Syntax: pytest
+
+import pytest
+
+
+def add(a, b):
+    """Add two numbers."""
+    return a + b
+
+
+class Calculator:
+    """A simple calculator class."""
+
+    def __init__(self):
+        """Initialize the calculator."""
+        self.result = 0
+
+    def add(self, num):
+        """Add a number to the result."""
+        self.result += num
+
+    def subtract(self, num):
+        """Subtract a number from the result."""
+        self.result -= num
+
+
+@pytest.fixture
+def calculator():
+    """Return a new calculator instance."""
+    return Calculator()
+
+
+def test_add(calculator):
+    """Test adding a number to the result."""
+    calculator.add(5)
+    assert calculator.result == 5
+
+
+def test_subtract(calculator):
+    """Test subtracting a number from the result."""
+    calculator.subtract(2)
+    assert calculator.result == -2
+
+
+### 23. Tooling
+# - Tooling is a set of tools that are used to help with the development of software.
+# - It includes tools for testing, linting, formatting, and more.
+# - Syntax: pip install tooling
